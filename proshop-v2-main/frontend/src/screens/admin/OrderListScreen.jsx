@@ -6,7 +6,19 @@ import Loader from '../../components/Loader';
 import { useGetOrdersQuery } from '../../slices/ordersApiSlice';
 
 const OrderListScreen = () => {
-  const { data: orders, isLoading, error } = useGetOrdersQuery();
+  // const { data: orders, isLoading, error } = useGetOrdersQuery();
+  const a = [
+      {
+        _id: '123',
+        user: { name: 'hung' },
+        totalPrice: 100,
+        createdAt: '',
+        isDelivered: false,
+        paidAt: '',
+      },
+    ],
+    isLoading = false,
+    error = undefined;
 
   return (
     <>
@@ -31,7 +43,7 @@ const OrderListScreen = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {a.map((order) => (
               <tr key={order._id}>
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
