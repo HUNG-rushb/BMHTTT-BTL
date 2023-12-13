@@ -1,92 +1,98 @@
 import React from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
+
 import { Table, Button } from 'react-bootstrap';
-import { FaTrash, FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
-import Message from '../../components/Message';
-import Loader from '../../components/Loader';
-import {
-  useDeleteUserMutation,
-  useGetUsersQuery,
-} from '../../slices/usersApiSlice';
-import { toast } from 'react-toastify';
 
 const UserListScreen = () => {
-  const { data: users, refetch, isLoading, error } = useGetUsersQuery();
-
-  const [deleteUser] = useDeleteUserMutation();
-
-  const deleteHandler = async (id) => {
-    if (window.confirm('Are you sure')) {
-      try {
-        await deleteUser(id);
-        refetch();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
-    }
-  };
-
   return (
     <>
-      <h1>Users</h1>
-      {isLoading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant='danger'>
-          {error?.data?.message || error.error}
-        </Message>
-      ) : (
-        <Table striped bordered hover responsive className='table-sm'>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>EMAIL</th>
-              <th>ADMIN</th>
-              <th></th>
+      <h1>Danh sách người dùng</h1>
+
+      <Table striped bordered hover responsive className='table-sm'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Số tài khoản</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            {
+              id: '1',
+              name: 'Nguyễn Trần Tiến Anh',
+              sex: 'Nam',
+              description: '123 Đường Tôn Đức Thắng, Quận Đống Đa, Hà Nội',
+              phone: '025 480 1252',
+              email: 'user911@example.com',
+              stk: '6923575473',
+            },
+            {
+              id: '2',
+              name: 'Mai Đình Quốc Anh',
+              sex: 'Nam',
+              description: '456 Đường Lê Lợi, Quận Hoàn Kiếm, Hà Nội',
+              phone: '088 692 7833',
+              email: 'user160@example.com',
+              stk: 2452769744,
+            },
+            {
+              id: '3',
+              name: 'Nguyễn Trường Tuấn Anh',
+              sex: 'Nam',
+              description: '789 Đường Nguyễn Văn Linh, Quận Long Biên, Hà Nội',
+              phone: '075 721 8941',
+              email: 'user656@example.com',
+              stk: 2336665911,
+            },
+            {
+              id: '4',
+              name: 'Lê Thị Hoàng Anh',
+              sex: 'Nữ',
+              description:
+                '321 Đường Lý Thường Kiệt, Quận Hai Bà Trưng, Hà Nội',
+              phone: '086 903 4244',
+              email: 'user862@example.com',
+              stk: '6923575473',
+            },
+
+            {
+              id: '8',
+              name: 'Hồ Anh Dũng	Nam',
+              sex: 'Nam',
+              description: '101 Đường Đê La Thành, Quận Đống Đa, Hà Nội',
+              phone: '082 798 6868',
+              email: 'user513@example.com',
+              stk: '5790729552',
+            },
+            {
+              id: '9',
+              name: 'Nguyễn Thanh Hải',
+              sex: 'Nam',
+              description: '111 Đường Tôn Đức Thắng, Quận Đống Đa, Hà Nội',
+              phone: '064 679 8301',
+              email: 'user670@example.com',
+              stk: '7150683583',
+            },
+          ].map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.sex}</td>
+              <td>{user.description}</td>
+              <td>{user.phone}</td>
+              <td>{user.stk}</td>
+              <td>
+                <a href={`mailto:${user.email}`}>{user.email}</a>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user._id}>
-                <td>{user._id}</td>
-                <td>{user.name}</td>
-                <td>
-                  <a href={`mailto:${user.email}`}>{user.email}</a>
-                </td>
-                <td>
-                  {user.isAdmin ? (
-                    <FaCheck style={{ color: 'green' }} />
-                  ) : (
-                    <FaTimes style={{ color: 'red' }} />
-                  )}
-                </td>
-                <td>
-                  {!user.isAdmin && (
-                    <>
-                      <LinkContainer
-                        to={`/admin/user/${user._id}/edit`}
-                        style={{ marginRight: '10px' }}
-                      >
-                        <Button variant='light' className='btn-sm'>
-                          <FaEdit />
-                        </Button>
-                      </LinkContainer>
-                      <Button
-                        variant='danger'
-                        className='btn-sm'
-                        onClick={() => deleteHandler(user._id)}
-                      >
-                        <FaTrash style={{ color: 'white' }} />
-                      </Button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -70,7 +70,7 @@ const ProductScreen = () => {
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
-        Go Back
+        Về
       </Link>
 
       <>
@@ -93,11 +93,11 @@ const ProductScreen = () => {
                 />
               </ListGroup.Item> */}
 
-              <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
+              <ListGroup.Item>Giá: {product.price} đồng</ListGroup.Item>
 
-              <ListGroup.Item>
+              {/* <ListGroup.Item>
                 Description: {product.description}
-              </ListGroup.Item>
+              </ListGroup.Item> */}
             </ListGroup>
           </Col>
 
@@ -106,17 +106,17 @@ const ProductScreen = () => {
               <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Price:</Col>
+                    <Col>Giá:</Col>
                     <Col>
-                      <strong>${product.price}</strong>
+                      <strong>{product.price} đồng</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
-                    <Col>Status:</Col>
+                    <Col>Tình trạng:</Col>
                     <Col>
-                      {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                      {product.countInStock > 0 ? 'Còn hàng' : 'Hết hàng'}
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -149,7 +149,7 @@ const ProductScreen = () => {
                     disabled={product.countInStock === 0}
                     onClick={addToCartHandler}
                   >
-                    Add To Cart
+                    Thêm vào giỏ hàng
                   </Button>
                 </ListGroup.Item>
               </ListGroup>

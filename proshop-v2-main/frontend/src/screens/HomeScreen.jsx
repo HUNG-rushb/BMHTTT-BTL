@@ -9,7 +9,7 @@ import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
 import Meta from '../components/Meta';
 import { allProducts } from './_product';
-
+import React from 'react';
 const HomeScreen = () => {
   const { pageNumber, keyword } = useParams();
 
@@ -22,10 +22,10 @@ const HomeScreen = () => {
     <>
       <>
         <Meta />
-        <h1>Latest Products</h1>
+        <h1>Các loại nước</h1>
         <Row>
           {allProducts.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+            <Col key={product.id} sm={12} md={6} lg={4} xl={3}>
               <Product product={product} />
             </Col>
           ))}

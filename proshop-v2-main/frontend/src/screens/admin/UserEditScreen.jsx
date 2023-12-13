@@ -10,7 +10,7 @@ import {
   useGetUserDetailsQuery,
   useUpdateUserMutation,
 } from '../../slices/usersApiSlice';
-
+import React from 'react';
 const UserEditScreen = () => {
   const { id: userId } = useParams();
   const [name, setName] = useState('');

@@ -4,7 +4,7 @@ import './assets/styles/bootstrap.custom.css';
 import './assets/styles/index.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -48,27 +48,26 @@ const router = createBrowserRouter(
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/register' element={<RegisterScreen />} />
       {/* Registered users */}
-      <Route path='' element={<PrivateRoute />}>
-        <Route path='/shipping' element={<ShippingScreen />} />
-        <Route path='/payment' element={<PaymentScreen />} />
-        <Route path='/placeorder' element={<PlaceOrderScreen />} />
-        <Route path='/order/:id' element={<OrderScreen />} />
-        <Route path='/profile' element={<ProfileScreen />} />
-      </Route>
-      {/* Admin users */}
-      <Route path='' element={<AdminRoute />}>
-        <Route path='/admin/orderlist' element={<OrderListScreen />} />
-        <Route path='/admin/productlist' element={<ProductListScreen />} />
-        <Route
-          path='/admin/productlist/:pageNumber'
-          element={<ProductListScreen />}
-        />
-        <Route path='/admin/userlist' element={<UserListScreen />} />
-        <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
-        <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
 
-        <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
-      </Route>
+      <Route path='/shipping' element={<ShippingScreen />} />
+      <Route path='/payment' element={<PaymentScreen />} />
+      <Route path='/placeorder' element={<PlaceOrderScreen />} />
+      <Route path='/order/:id' element={<OrderScreen />} />
+      <Route path='/profile' element={<ProfileScreen />} />
+
+      {/* Admin users */}
+
+      <Route path='/admin/orderlist' element={<OrderListScreen />} />
+      <Route path='/admin/productlist' element={<ProductListScreen />} />
+      <Route
+        path='/admin/productlist/:pageNumber'
+        element={<ProductListScreen />}
+      />
+      <Route path='/admin/userlist' element={<UserListScreen />} />
+      <Route path='/admin/product/:id/edit' element={<ProductEditScreen />} />
+      <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
+
+      <Route path='/admin/user/:id/edit' element={<UserEditScreen />} />
     </Route>
   )
 );
@@ -85,5 +84,3 @@ root.render(
     </HelmetProvider>
   </React.StrictMode>
 );
-
-reportWebVitals();

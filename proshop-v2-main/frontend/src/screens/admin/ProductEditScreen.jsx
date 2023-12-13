@@ -10,7 +10,7 @@ import {
   useUpdateProductMutation,
   useUploadProductImageMutation,
 } from '../../slices/productsApiSlice';
-
+import React from 'react';
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
 
